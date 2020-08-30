@@ -9,7 +9,7 @@ import { WeatherService } from '../Service/weather.service';
 })
 export class DisplayWeatherComponent implements OnInit {
 
-  @Input() informations: any;
+  informations: any;
 
   constructor(private weatherService: WeatherService) { }
 

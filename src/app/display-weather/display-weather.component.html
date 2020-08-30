@@ -1,1 +1,6 @@
-<div *ngIf="informations">{{informations.name}}</div>
+<div *ngIf="display_method === 'current' ">
+    <app-currentweather [weather_information]=meteodatas [after_day]='1'></app-currentweather>
+</div>
+<div *ngIf="display_method == 'forecasting'  ">
+    <app-forecast [after_day]=3></app-forecast>
+</div>

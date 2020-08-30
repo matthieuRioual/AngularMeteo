@@ -1,0 +1,9 @@
+{{ localisation_method }}
+{{ display_method }}
+
+<div *ngIf="display_method === 'current' ">
+    <app-currentweather [informations]='informations'></app-currentweather>
+</div>
+<div *ngIf="display_method == 'forecasting'  ">
+    <app-forecast [informations]='informations'></app-forecast>
+</div>

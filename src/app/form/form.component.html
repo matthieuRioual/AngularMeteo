@@ -1,0 +1,32 @@
+<div class='container'>
+
+    <div class="row">
+
+        <h1>Choose your localisation method :</h1>
+        <div *ngFor="let method of methods">
+            <div class="form-check form-check-inline">
+                <label>
+                    <input type="checkbox" [value]="method.name"
+                        (change)="onChange(method, $event.target.checked);display.changelocalisationMethod(method)" />
+                    {{  method.name }}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>{{checkID}}</p>
+
+<div class='container' *ngIf='checkID >=1'>
+    <form [formGroup]="myForm" (ngSubmit)="display.getmeteo()">
+        <div class="form-group">
+            <label for="cityinput"> city </label>
+            <input id="cityinput" text='text' placeholder="Please input a Location" class="form-control"
+                formControlName="city" />
+        </div>
+        <input type='submit' value=" Envoyer" class="btn btn-primary">
+    </form>
+</div>
+<button (click)="display.setMethod('current');display.getmeteo()">Current weather</button>
+<button (click)="display.setMethod('forecasting');display.getmeteo()">Forecasting</button>
+<app-display-weather #display [localisation]="myForm.value"></app-display-weather>

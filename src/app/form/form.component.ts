@@ -46,10 +46,9 @@ export class FormComponent implements OnInit {
 
   }
 
-  getInputs(id: number) {
-    console.log(this.methods.filter(x => x.id == id));
+  Onsubmit() {
+    this.weatherService.changeLocalisation(this.myForm.value.city);
   }
-
 
 
 

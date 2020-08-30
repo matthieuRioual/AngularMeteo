@@ -9,50 +9,13 @@ import { WeatherService } from '../Service/weather.service';
 })
 export class DisplayWeatherComponent implements OnInit {
 
-  localisation_method: string;
-  display_method: string = 'current';
-  informations: any;
-  @Input() localisation: any;
+  @Input() informations: any;
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
+    this.weatherService.meteoDatas.subscribe(datas => { this.informations = datas, console.log(datas) });
   }
 
-
-  setMethod(method: string) {
-    this.display_method = method;
-  }
-
-  getmeteo() {
-    switch (this.localisation_method) {
-      case 'City': {
-        switch (this.display_method) {
-          case 'forecast': {
-            this.weatherService.getForecastbyCity(this.localisation.city).subscribe(datas => this.informations = datas);
-          }
-          case 'current': {
-            this.weatherService.getCurrentWeatherbyCity(this.localisation.city).subscribe(datas => this.informations = datas);
-
-          }
-        }
-      }
-      case 'Geographic positioning': {
-        switch (this.display_method) {
-          case 'City': {
-            this.weatherService.getCurrentWeatherbyCoord(this.localisation.lat, this.localisation.long).subscribe(datas => this.informations = datas);
-          }
-          case 'forecast': {
-            this.weatherService.getForecastbyCoord(this.localisation.lat, this.localisation.long).subscribe(datas => this.informations = datas);
-          }
-        }
-      }
-    }
-
-  }
-
-  changelocalisationMethod(event: any) {
-    this.localisation_method = event.name;
-  }
 
 }

@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+
 const apiKey: string = environment.apiKey;
+const apiURL: string = environment.apiUrl
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
+  private localisation: any;
+  public Datas = new BehaviorSubject<any>([]);
+  public meteoDatas = this.Datas.asObservable();
+
   constructor(private http: HttpClient) { }
 
-  getCurrentWeatherbyCity(loc: string) {
-    return this.http.get(`${environment.apiUrl}/weather?q=${loc}&appid=${apiKey}`)
-
-  }
-  getCurrentWeatherbyCoord(lat: string, long: string) {
-    return this.http.get(`${environment.apiUrl}/weather?lat=${lat}&lon=${long}&appid=${apiKey}`)
+  ngOnInit(): void {
   }
 
-  getForecastbyCity(loc: string) {
-    return this.http.get(`${environment.apiUrl}/forecast?q=${loc}&appid=${apiKey}`)
+  //return an observable JSON from openweather with the current weather
+  getCurrentWeatherbyCity(loc: string): Observable<any> {
+    return this.http.get(`${apiURL}/weather?q=${loc}&appid=${apiKey}`);
   }
-  getForecastbyCoord(lat: string, long: string) {
-    return this.http.get(`${environment.apiUrl}/forecast?lat=${lat}&long=${long}&appid=${apiKey}`)
+
+  //triggered when we click on the submit button. We receive values of form as paramaeters
+  changeLocalisation(loc: string) {
+    this.localisation = loc;
+    this.Datas.next(this.getCurrentWeatherbyCity(loc));
   }
 
 }

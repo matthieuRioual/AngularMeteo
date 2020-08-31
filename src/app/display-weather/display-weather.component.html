@@ -1,5 +1,10 @@
+<button type="button" class="btn btn-outline-primary" (click)="changedisplayMethode($event)"
+    value='current'>Currentweather</button>
+<button type="button" class="btn btn-outline-primary" (click)="changedisplayMethode($event)"
+    value='forecasting'>Forecast</button>
 <div *ngIf="display_method === 'current' ">
-    <app-currentweather [weather_information]=currentmeteodatas [after_day]='1' [name]=currentmeteodatas.name></app-currentweather>
+    <app-currentweather [weather_information]=currentmeteodatas [after_day]='0' [name]=currentmeteodatas.name>
+    </app-currentweather>
 </div>
 <div *ngIf="display_method == 'forecasting'  ">
     <app-forecast [meteodatas]=forecastmeteodatas></app-forecast>

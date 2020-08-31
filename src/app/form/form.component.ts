@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { WeatherService } from '../Service/weather.service';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-
 
 
 @Component({
@@ -20,11 +17,9 @@ export class FormComponent implements OnInit {
     { id: 2, name: 'Geographic positioning', inputs: ['lat', 'long'] }
   ];
 
-  checkID: number = -1;
-  selectedMethod: any;
+  selectedMethod: string;
 
-  constructor(private formBuilder: FormBuilder, private weatherService: WeatherService, private route: ActivatedRoute,
-    private location: Location) { }
+  constructor(private formBuilder: FormBuilder, private weatherService: WeatherService) { }
 
   ngOnInit(): void {
 
@@ -34,11 +29,9 @@ export class FormComponent implements OnInit {
 
   }
 
-  onChange(method: any, isChecked: boolean) {
-    if (isChecked) {
-      this.checkID = method.id;
-      this.selectedMethod = this.getMethod(this.checkID);
-    }
+  changeMethod(event: any) {
+    this.selectedMethod = event.target.value;
+    console.log(event);
   }
 
   getMethod(id: number): any {

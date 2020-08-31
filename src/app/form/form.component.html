@@ -1,28 +1,24 @@
-<div class='container'>
-
-    <div class="row">
-
-        <h1>Choose your localisation method :</h1>
-        <div *ngFor="let method of methods">
-            <div class="form-check form-check-inline">
-                <label>
-                    <input type="checkbox" [value]="method.name" (change)="onChange(method, $event.target.checked);" />
-                    {{  method.name }}
-                </label>
+<form [formGroup]="myForm" (ngSubmit)="Onsubmit()">
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Choose your localisation method :</legend>
+            <div class="col-sm-8">
+                <div class="form-check" *ngFor="let method of methods">
+                    <input class="form-check-input" type="radio" name="enums" id="{{method.name}}" [value]="method.name"
+                        (click)="changeMethod($event)">
+                    <label class=" form-check-label" for="{{method.name}}">
+                        {{method.name}}
+                    </label>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-<p>{{checkID}}</p>
-
-<div class='container' *ngIf='checkID >=1'>
-    <form [formGroup]="myForm" (ngSubmit)="Onsubmit()">
+    </fieldset>
+    <div class='container' *ngIf='selectedMethod'>
         <div class="form-group">
             <label for="cityinput"> city </label>
             <input id="cityinput" text='text' placeholder="Please input a Location" class="form-control"
                 formControlName="city" />
         </div>
         <input type='submit' value=" Envoyer" class="btn btn-primary">
-    </form>
-</div>
+    </div>
+</form>

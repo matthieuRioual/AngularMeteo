@@ -11,7 +11,7 @@ export class DisplayWeatherComponent implements OnInit {
 
   currentmeteodatas: any;
   forecastmeteodatas: any;
-  display_method: string = 'forecasting';
+  display_method: string = 'current';
 
 
   constructor(private weatherService: WeatherService) { }
@@ -22,6 +22,10 @@ export class DisplayWeatherComponent implements OnInit {
 
   }
 
+
+  changedisplayMethode(event: any) {
+    this.display_method = event.target.value;
+  }
 
 
 }

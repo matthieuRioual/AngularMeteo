@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WeatherService } from '../Service/weather.service';
 
 
 @Component({
@@ -11,9 +10,10 @@ export class CurrentweatherComponent implements OnInit {
 
   @Input() weather_information: any;
   @Input() after_day: string;
+  @Input() name:string;
   weather_date = new Date();
-  
-  constructor(private weatherService: WeatherService) {
+
+  constructor() {
   }
 
   ngOnInit(): void {

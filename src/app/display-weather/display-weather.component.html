@@ -1,6 +1,6 @@
 <div *ngIf="display_method === 'current' ">
-    <app-currentweather [weather_information]=meteodatas [after_day]='1'></app-currentweather>
+    <app-currentweather [weather_information]=currentmeteodatas [after_day]='1' [name]=currentmeteodatas.name></app-currentweather>
 </div>
 <div *ngIf="display_method == 'forecasting'  ">
-    <app-forecast [after_day]=3></app-forecast>
+    <app-forecast [meteodatas]=forecastmeteodatas></app-forecast>
 </div>

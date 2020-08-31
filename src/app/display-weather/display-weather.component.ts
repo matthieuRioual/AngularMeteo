@@ -9,16 +9,19 @@ import { WeatherService } from '../Service/weather.service';
 })
 export class DisplayWeatherComponent implements OnInit {
 
-  meteodatas: any;
-  display_method: string = 'current';
+  currentmeteodatas: any;
+  forecastmeteodatas: any;
+  display_method: string = 'forecasting';
+
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    this.weatherService.meteoDatas.subscribe(datas => { this.meteodatas = datas });
+    this.weatherService.currentmeteoDatas.subscribe(datas => { this.currentmeteodatas = datas });
+    this.weatherService.forecastmeteoDatas.subscribe(datas => { this.forecastmeteodatas = datas; console.log(datas) });
 
   }
 
-  
+
 
 }

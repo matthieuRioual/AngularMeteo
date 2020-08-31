@@ -1,4 +1,7 @@
 <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let dayly_datas of meteodatas;let i=index;">
-        <app-currentweather [weather_information]=meteodatas [after_day]={{i}}></app-currentweather>
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"
+        *ngFor="let daily_datas of meteodatas.list | slice:0:7;let i =index">
+        <app-currentweather [weather_information]=daily_datas [after_day]=i [name]=meteodatas.city.name>
+            {{ meteodatas.name}}
+        </app-currentweather>
     </div>

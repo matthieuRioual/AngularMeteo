@@ -2,38 +2,32 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
 
-
-
-import { AppComponent } from './app.component';
-import { ForecastComponent } from './forecast/forecast.component';
-import { FormComponent } from './form/form.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { WeatherService } from './Service/weather.service';
 import { AppRoutingModule } from './app-routing.module';
-import { DisplayWeatherComponent } from './display-weather/display-weather.component';
-import { CurrentweatherComponent } from './currentweather/currentweather.component';
-import { MaterialModule } from './material.module';
+import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { ForecastMeteoComponent } from './forecast-meteo/forecast-meteo.component';
+import { FormEntryComponent } from './form-entry/form-entry.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DailyWidgetViewComponent } from './daily-widget-view/daily-widget-view.component';
+import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ForecastComponent,
-    FormComponent,
-    DisplayWeatherComponent,
-    CurrentweatherComponent
+    HomePageComponent,
+    ForecastMeteoComponent,
+    FormEntryComponent,
+    DailyWidgetViewComponent,
+    CurrentMeteoComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule,
-    FlexLayoutModule
-
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [WeatherService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

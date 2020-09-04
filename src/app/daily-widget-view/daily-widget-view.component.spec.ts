@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormComponent } from './form.component';
+import { DailyWidgetViewComponent } from './daily-widget-view.component';
 
-describe('FormComponent', () => {
-  let component: FormComponent;
-  let fixture: ComponentFixture<FormComponent>;
+describe('DailyWidgetViewComponent', () => {
+  let component: DailyWidgetViewComponent;
+  let fixture: ComponentFixture<DailyWidgetViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormComponent ]
+      declarations: [ DailyWidgetViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormComponent);
+    fixture = TestBed.createComponent(DailyWidgetViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

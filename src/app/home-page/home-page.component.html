@@ -1,11 +1,11 @@
 <app-form-entry></app-form-entry>
 <div class='flex-container'>
     <div>
-        <button type="button" class="btn btn-primary" value="current" (click)='redirectTo($event)'>Current</button>
+        <a [routerLink]="['./current']" queryParamsHandling='preserve' class="btn btn-primary">Current</a>
     </div>
     <div>
 
-        <button type="button" class="btn btn-primary" value="forecast" (click)='redirectTo($event)'>Forecast</button>
+        <a [routerLink]="['./forecast']" queryParamsHandling='preserve' class="btn btn-primary">Forecast</a>
 
     </div>
 

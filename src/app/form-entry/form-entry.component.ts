@@ -47,8 +47,7 @@ export class FormEntryComponent implements OnInit {
 
   onSubmit() {
     var args = {};
-    this.formInputs.forEach(element => { args[element] = this.myForm.value[element]; console.log("coucou"); });
-    console.log(args);
+    this.formInputs.forEach(element => { args[element] = this.myForm.value[element]; });
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/home/current'], { queryParams: Object.assign(args, this.formMethod) });
     });

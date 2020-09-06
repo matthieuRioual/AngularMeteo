@@ -1,8 +1,8 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <fieldset class="form-group">
         <div class="row">
-            <legend class="col-form-label col-sm-4 pt-0">Choose your localisation method :</legend>
-            <div class="col-sm-8">
+            <legend class="col-form-label col-sm-6 pt-0">Choose your localisation method :</legend>
+            <div class="col-sm-6">
                 <div class="form-check" *ngFor="let method of methods">
                     <input class="form-check-input" type="radio" name="enums" id="{{method.name}}" [value]="method.name"
                         (click)="changeMethod($event)" [checked]="method.name == 'City'">
@@ -13,10 +13,9 @@
             </div>
         </div>
     </fieldset>
-    <div class='container' *ngIf='formMethod.method'>
+    <div *ngIf='formMethod.method'>
         <div class="form-group">
-            <div *ngFor='let input of formInputs'>
-
+            <div class='mt-3' *ngFor='let input of formInputs'>
                 <label for="{{input}}"> {{input}}</label>
                 <input id="{{input}}" type='text' placeholder="Please input a Location" class="form-control"
                     formControlName="{{input}}" />

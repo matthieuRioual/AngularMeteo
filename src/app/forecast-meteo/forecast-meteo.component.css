@@ -1,0 +1,9 @@
+ul{
+    display: flex;
+    list-style-type: none;
+    flex-wrap: nowrap;
+}
+.overflow_scroll{
+    overflow:auto;
+    }
+

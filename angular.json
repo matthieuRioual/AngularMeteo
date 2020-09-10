@@ -9,11 +9,19 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "fr": {
+            "translation": "src/i18n/messages.fr.xlf"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Appmeteo",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +32,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -36,6 +43,17 @@
             ]
           },
           "configurations": {
+            "fr": {
+              "localize": [
+                "fr"
+              ],
+              "baseHref": "/fr/",
+              "aot": true,
+              "i18nFile": "src/i18n/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "optimization": true,
+              "i18nLocale": "fr"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -72,6 +90,9 @@
             "browserTarget": "Appmeteo:build"
           },
           "configurations": {
+            "fr": {
+              "browserTarget": "Appmeteo:build:fr"
+            },
             "production": {
               "browserTarget": "Appmeteo:build:production"
             }
@@ -95,7 +116,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -129,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "Appmeteo"
+  "defaultProject": "Appmeteo",
+  "cli": {
+    "analytics": "90827588-56c0-46bb-91dd-83e2d5cbeedc"
+  }
 }

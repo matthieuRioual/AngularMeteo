@@ -2,3 +2,12 @@
 .app-title{
     font-family: lobster;
 }
+
+
+.custom-popover li {
+    border: none!important;
+    text-align: center;
+    background-color:black;color:white
+
+
+  }

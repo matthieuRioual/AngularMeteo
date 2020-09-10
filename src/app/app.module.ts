@@ -11,6 +11,8 @@ import { FormEntryComponent } from './form-entry/form-entry.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DailyWidgetViewComponent } from './daily-widget-view/daily-widget-view.component';
 import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

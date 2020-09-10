@@ -2,6 +2,25 @@
 <div class="container">
     <div class="card border-0 shadow my-5">
         <div class="card-body">
+            <ng-template #popContent>
+                <ul>
+                    <li>
+                        fr
+                    </li>
+                    <li>
+                        en
+                    </li>
+                </ul>
+            </ng-template>
+            <div class="custom">
+
+                <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+                    [ngbPopover]="popContent">
+                    <i class="fa fa-globe" aria-hidden="true"></i>
+                    <i class="fa fa-caret-down ml-2" aria-hidden="true"></i>
+                </button>
+            </div>
+
             <div class='card-title text-center display-1 app-title'>{{title}}</div>
             <div class='mt-5'>
                 <router-outlet></router-outlet>

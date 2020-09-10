@@ -68,8 +68,8 @@ export class CurrentMeteoComponent implements OnInit {
         this.meteoData.city = datas.name;
         console.log(datas.timezone);
 
-        this.meteoData.date = this.getDate((datas.dt + datas.timezone -7200) * 1000);
-        this.meteoData.temp = Math.round((datas.main.temp - 273) * 10) / 10;
+        this.meteoData.date = this.getDate((datas.dt + datas.timezone - 7200) * 1000);
+        this.meteoData.temp = Math.round((datas.main.temp) * 10) / 10;
         this.meteoData.temp_feeling = Math.trunc(datas.main.feels_like - 273);
         this.meteoData.temp_min = Math.trunc(datas.main.temp_min - 273);
         this.meteoData.temp_max = Math.trunc(datas.main.temp_max - 273);
@@ -85,7 +85,7 @@ export class CurrentMeteoComponent implements OnInit {
         this.meteoData = new dailyMeteo();
         this.meteoData.city = datas.name;
         console.log(datas.timezone);
-        this.meteoData.date = this.getDate((datas.dt + datas.timezone-7200) * 1000);
+        this.meteoData.date = this.getDate((datas.dt + datas.timezone - 7200) * 1000);
         this.meteoData.temp = Math.round((datas.main.temp - 273) * 10) / 10;
         this.meteoData.temp_feeling = Math.trunc(datas.main.feels_like - 273);
         this.meteoData.temp_min = Math.trunc(datas.main.temp_min - 273);

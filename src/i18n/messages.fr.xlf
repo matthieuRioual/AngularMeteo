@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="bd5a3b1c5a3c185c7bbb0e09a061d4cdc88ce5ad" datatype="html">
+        <source>Current</source>
+                <target>Actuellement</target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">button current weather</note>
+      </trans-unit>
+      <trans-unit id="44af83efc4b6564ab0dff9ebc36ce95d7d2a1ae8" datatype="html">
+        <source>Forecast</source>
+        <target>Prevision</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/home-page.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">button forecast weather</note>
+      </trans-unit>
+      <trans-unit id="4267b6b029681f1723c7de39e2f184d0d39e54d3" datatype="html">
+        <source>Choose your
+                localisation
+                method :</source>
+                <target>Choisissez votre méthode de localisation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/form-entry/form-entry.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">A phrase to ask the customer to choose his localisation method</note>
+        <note priority="1" from="meaning">localisation method</note>
+      </trans-unit>
+      <trans-unit id="9d4ecde57f9c42788a28abcbfa069346237e92b4" datatype="html">
+        <source>
+                        <x id="ICU" equiv-text="{method.name, select, City {...} , Geographic {...}}"/>
+                    </source>
+                            <target><x id="ICU" equiv-text="{method.name, select, City {...}, Geographic {...}}"/></target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/form-entry/form-entry.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">translate the different localisation method</note>
+        <note priority="1" from="meaning">checkboxcontext</note>
+      </trans-unit>
+      <trans-unit id="bc99db05f2cd79f8e1f38ccf5004fcd08d126e07" datatype="html">
+        <source>{VAR_SELECT, select, City {City} , Geographic {Geographic} }</source>
+                <target>{VAR_SELECT, select, City {Ville}, Geographic {iogjfiogjdfiogjdfioj}}</target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/form-entry/form-entry.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4836d6beb68613a57c1dab150a2da3e82512ba77" datatype="html">
+        <source>Please input a Location</source>
+                                <target>Veuillez entrer une localisation</target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/form-entry/form-entry.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cc7db8d86c129a50b44b6dfca737335d62dea19d" datatype="html">
+        <source>Send</source>
+                                <target>Envoyer</target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/form-entry/form-entry.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">text on the input of send button</note>
+        <note priority="1" from="meaning">send button</note>
+      </trans-unit>
+      <trans-unit id="f44a16023b712e0ee6a2fa9d1a3014e281c5f727" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{meteoData.temp-273}}"/>° C
+                            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/daily-widget-view/daily-widget-view.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

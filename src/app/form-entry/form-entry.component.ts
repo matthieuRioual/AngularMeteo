@@ -15,7 +15,7 @@ export class FormEntryComponent implements OnInit {
 
   methods = [
     { id: 1, name: 'City', inputs: ['city'] },
-    { id: 2, name: 'Geographic positioning', inputs: ['lat', 'long'] }
+    { id: 2, name: 'Geographic', inputs: ['lat', 'long'] }
   ];
 
   formInputs = this.methods.filter(x => this.formMethod.method === x.name)[0].inputs;

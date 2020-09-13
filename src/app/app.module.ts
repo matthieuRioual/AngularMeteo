@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,8 +11,16 @@ import { FormEntryComponent } from './form-entry/form-entry.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DailyWidgetViewComponent } from './daily-widget-view/daily-widget-view.component';
 import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { MultiTranslateHttpLoader } from "ngx-translate-multi-http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: "./assets/translate/", suffix: ".json" },
+  ]);
+}
 
 @NgModule({
   declarations: [
@@ -28,7 +36,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
 
   ],
   providers: [],

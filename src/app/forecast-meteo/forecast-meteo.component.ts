@@ -17,7 +17,9 @@ export class ForecastMeteoComponent implements OnInit {
   constructor(private route: ActivatedRoute, private weatherService: WeatherServiceService) { }
 
   ngOnInit(): void {
-    this.getMeteo(this.route.snapshot.queryParams);
+    this.route.queryParams.subscribe(params => {
+      this.getMeteo(params); // Print the parameter to the console. 
+    });
 
   }
 
@@ -48,7 +50,7 @@ export class ForecastMeteoComponent implements OnInit {
   getMeteo(localisation: any) {
     if (localisation.city) {
       this.weatherService.getForecastWeatherbyCity(localisation.city).subscribe(datas => {
-        for (let i = 0; i < datas.list.length; i++) {
+        for (let i = 0; i < 4; i++) {
           let dailydatas = datas.list[i];
           let oneDayMeteo: dailyMeteo;
           oneDayMeteo = new dailyMeteo();

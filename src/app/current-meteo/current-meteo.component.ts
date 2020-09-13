@@ -21,8 +21,10 @@ export class CurrentMeteoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMeteo(this.route.snapshot.queryParams);
-
+    this.route.queryParams.subscribe(params => {
+      this.getMeteo(params); // Print the parameter to the console. 
+    });
+    
 
   }
 
@@ -69,7 +71,7 @@ export class CurrentMeteoComponent implements OnInit {
         console.log(datas.timezone);
 
         this.meteoData.date = this.getDate((datas.dt + datas.timezone - 7200) * 1000);
-        this.meteoData.temp = Math.round((datas.main.temp) * 10) / 10;
+        this.meteoData.temp = Math.round((datas.main.temp - 273) * 10) / 10;
         this.meteoData.temp_feeling = Math.trunc(datas.main.feels_like - 273);
         this.meteoData.temp_min = Math.trunc(datas.main.temp_min - 273);
         this.meteoData.temp_max = Math.trunc(datas.main.temp_max - 273);

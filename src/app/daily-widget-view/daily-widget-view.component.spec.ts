@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DailyWidgetViewComponent } from './daily-widget-view.component';
 
 describe('DailyWidgetViewComponent', () => {
+
   let component: DailyWidgetViewComponent;
   let fixture: ComponentFixture<DailyWidgetViewComponent>;
 

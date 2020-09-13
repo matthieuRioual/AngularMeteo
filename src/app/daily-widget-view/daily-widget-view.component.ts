@@ -8,6 +8,7 @@ import { dailyMeteo } from '../static/Models/dailyMeteo';
 })
 export class DailyWidgetViewComponent implements OnInit {
 
+  @Input() displayMethod: string;
   @Input() meteoData: dailyMeteo;
 
   constructor() { }

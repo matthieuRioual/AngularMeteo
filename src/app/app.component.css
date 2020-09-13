@@ -4,10 +4,16 @@
 }
 
 
-.custom-popover li {
-    border: none!important;
-    text-align: center;
-    background-color:black;color:white
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
 
-
-  }
+ .dropdown-menu{
+     min-width: 0px;
+     width: auto;
+ }
+ .langpicture{
+     width:20px;
+     height: auto;
+ }

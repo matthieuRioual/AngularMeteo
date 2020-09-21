@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form-entry.component.css']
 })
 
-export class FormEntryComponent implements OnInit {
+export class FormEntryComponent implements OnInit, OnDestroy {
 
   myForm: FormGroup;
   formMethod = { method: 'City' };
@@ -32,6 +32,7 @@ export class FormEntryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("je suis cree")
     this.subscription = this.route.params.subscribe(params => this.changeLangue(params));
   }
 
@@ -59,11 +60,13 @@ export class FormEntryComponent implements OnInit {
   }
 
   changeLangue(params: any) {
+    console.log(params["lang"])
     this.translate.use(params["lang"]);
     this.currentLanguage = params["lang"];
   }
 
   ngOnDestroy() {
+    console.log("je suis détruit")
     this.subscription.unsubscribe();
   }
 

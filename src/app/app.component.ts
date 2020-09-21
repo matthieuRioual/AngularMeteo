@@ -20,12 +20,10 @@ export class AppComponent implements OnInit {
 
   changelanguage(event: any) {
     let params = this.route.url.split("/");
-    console.log(params)
-    params[1] = event.target.value;
-    console.log(params)
+    console.log(event.currentTarget.value)
+    params[1] = event.currentTarget.value;
     let urlTree = this.route.parseUrl(params.join("/"));
     urlTree.queryParams = {};
-    console.log(urlTree.toString());
     this.route.navigate([urlTree.toString()], { queryParamsHandling: 'preserve' });
 
   }

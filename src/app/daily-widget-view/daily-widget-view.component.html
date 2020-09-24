@@ -1,7 +1,6 @@
 <div *ngIf="meteoData?.city">
     <div class="container">
         <div class="row justify-content-center">
-            {{displayMethod}}
             <div id="compo"
                 [ngClass]="{'col-md-8 col-lg-6 col-sm-12':displayMethod === 'current', 'w-100 col-12':displayMethod === 'forecast'}">
                 <div class="card p-2 border border-secondary">

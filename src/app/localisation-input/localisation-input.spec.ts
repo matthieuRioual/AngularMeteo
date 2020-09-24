@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormEntryComponent } from './form-entry.component';
+import { LocalisationInputComponent } from './localisation-input.component';
 
 describe('FormEntryComponent', () => {
-  let component: FormEntryComponent;
-  let fixture: ComponentFixture<FormEntryComponent>;
+  let component: LocalisationInputComponent;
+  let fixture: ComponentFixture<LocalisationInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormEntryComponent ]
+      declarations: [ LocalisationInputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormEntryComponent);
+    fixture = TestBed.createComponent(LocalisationInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

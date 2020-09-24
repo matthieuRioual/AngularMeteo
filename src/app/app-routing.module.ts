@@ -5,9 +5,9 @@ import { ForecastMeteoComponent } from './forecast-meteo/forecast-meteo.componen
 import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'en/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: ':lang/home', component: HomePageComponent,
+    path: 'home', component: HomePageComponent,
     children: [
       { path: 'current', component: CurrentMeteoComponent },
       { path: 'forecast', component: ForecastMeteoComponent }

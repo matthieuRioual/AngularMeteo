@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ForecastMeteoComponent } from './forecast-meteo/forecast-meteo.component';
-import { FormEntryComponent } from './form-entry/form-entry.component';
+import { LocalisationInputComponent } from './localisation-input/localisation-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DailyWidgetViewComponent } from './daily-widget-view/daily-widget-view.component';
 import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
@@ -27,7 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomePageComponent,
     ForecastMeteoComponent,
-    FormEntryComponent,
+    LocalisationInputComponent,
     DailyWidgetViewComponent,
     CurrentMeteoComponent
   ],

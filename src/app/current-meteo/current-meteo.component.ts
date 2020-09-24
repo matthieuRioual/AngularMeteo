@@ -1,8 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WeatherServiceService } from '../static/Services/weather-service.service';
-import { dailyMeteo } from '../static/Models/dailyMeteo';
+import { WeatherServiceService } from '../shared/services/weather-service.service';
+import { DailyMeteo } from '../shared/models/DailyMeteo';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { dailyMeteo } from '../static/Models/dailyMeteo';
 export class CurrentMeteoComponent implements OnInit {
 
 
-  meteoData: dailyMeteo;
+  meteoData: DailyMeteo;
+  queryParamsSubscription: Subscription;
 
 
   constructor(private route: ActivatedRoute, private weatherService: WeatherServiceService) {
@@ -21,10 +23,10 @@ export class CurrentMeteoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       this.getMeteo(params); // Print the parameter to the console. 
     });
-    
+
 
   }
 
@@ -66,7 +68,7 @@ export class CurrentMeteoComponent implements OnInit {
   getMeteo(localisation: any) {
     if (localisation.city) {
       this.weatherService.getCurrentWeatherbyCity(localisation.city).subscribe(datas => {
-        this.meteoData = new dailyMeteo();
+        this.meteoData = new DailyMeteo();
         this.meteoData.city = datas.name;
         console.log(datas.timezone);
 
@@ -84,7 +86,7 @@ export class CurrentMeteoComponent implements OnInit {
     }
     else if (localisation.lat && localisation.long) {
       this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(datas => {
-        this.meteoData = new dailyMeteo();
+        this.meteoData = new DailyMeteo();
         this.meteoData.city = datas.name;
         console.log(datas.timezone);
         this.meteoData.date = this.getDate((datas.dt + datas.timezone - 7200) * 1000);

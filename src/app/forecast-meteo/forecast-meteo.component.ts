@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WeatherServiceService } from '../static/Services/weather-service.service';
-import { dailyMeteo } from '../static/Models/dailyMeteo';
+import { WeatherServiceService } from '../shared/services/weather-service.service';
+import { DailyMeteo } from '../shared/models/DailyMeteo';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-forecast-meteo',
@@ -10,17 +11,15 @@ import { dailyMeteo } from '../static/Models/dailyMeteo';
 })
 export class ForecastMeteoComponent implements OnInit {
 
-
-  meteoData: dailyMeteo[] = [];
-
+  meteoData: DailyMeteo[] = [];
+  queryParamsSubscription:Subscription;
 
   constructor(private route: ActivatedRoute, private weatherService: WeatherServiceService) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       this.getMeteo(params); // Print the parameter to the console. 
     });
-
   }
 
   getDate(ts_ms: number): string {
@@ -52,8 +51,8 @@ export class ForecastMeteoComponent implements OnInit {
       this.weatherService.getForecastWeatherbyCity(localisation.city).subscribe(datas => {
         for (let i = 0; i < 4; i++) {
           let dailydatas = datas.list[i];
-          let oneDayMeteo: dailyMeteo;
-          oneDayMeteo = new dailyMeteo();
+          let oneDayMeteo: DailyMeteo;
+          oneDayMeteo = new DailyMeteo();
           oneDayMeteo.city = datas.city.name;
           oneDayMeteo.date = this.getDate((dailydatas.dt + datas.city.timezone - 7200) * 1000);
           oneDayMeteo.temp = Math.round((dailydatas.main.temp - 273) * 10) / 10;
@@ -75,8 +74,8 @@ export class ForecastMeteoComponent implements OnInit {
       this.weatherService.getForecastWeatherbyLoc(localisation.lat, localisation.long).subscribe(datas => {
         for (let i = 0; i < datas.list.length; i++) {
           let dailydatas = datas.list[i];
-          let oneDayMeteo: dailyMeteo;
-          oneDayMeteo = new dailyMeteo();
+          let oneDayMeteo: DailyMeteo;
+          oneDayMeteo = new DailyMeteo();
           oneDayMeteo.city = datas.city.name;
           oneDayMeteo.date = this.getDate((dailydatas.dt + datas.city.timezone - 7200) * 1000);
           oneDayMeteo.temp = Math.round((dailydatas.main.temp - 273) * 10) / 10;

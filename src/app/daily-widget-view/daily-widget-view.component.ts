@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { dailyMeteo } from '../static/Models/dailyMeteo';
+import { DailyMeteo } from '../shared/models/DailyMeteo';
 
 @Component({
   selector: 'app-daily-widget-view',
@@ -9,7 +9,7 @@ import { dailyMeteo } from '../static/Models/dailyMeteo';
 export class DailyWidgetViewComponent implements OnInit {
 
   @Input() displayMethod: string;
-  @Input() meteoData: dailyMeteo;
+  @Input() meteoData: DailyMeteo;
 
   constructor() { }
 

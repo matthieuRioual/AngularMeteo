@@ -1,6 +1,6 @@
 import { Time } from '@angular/common';
 
-export class dailyMeteo {
+export class DailyMeteo {
     city: string;
     date?: string;
     temp?: number;
@@ -11,5 +11,5 @@ export class dailyMeteo {
     icon?: string;
     pressure?: string;
     humidity?: string;
-    wind?:number;
+    wind?: number;
 }

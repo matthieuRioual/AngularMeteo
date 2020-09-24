@@ -6,14 +6,14 @@ import { Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'app-form-entry',
-  templateUrl: './form-entry.component.html',
-  styleUrls: ['./form-entry.component.css']
+  selector: 'app-localisation-input',
+  templateUrl: './localisation-input.component.html',
+  styleUrls: ['./localisation-input.component.css']
 })
 
-export class FormEntryComponent implements OnInit, OnDestroy {
+export class LocalisationInputComponent implements OnInit, OnDestroy {
 
-  myForm: FormGroup;
+  formValues: FormGroup;
   formMethod = { method: 'City' };
   private subscription: Subscription;
 
@@ -24,19 +24,16 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   ];
 
   formInputs = this.methods.filter(x => this.formMethod.method === x.name)[0].inputs;
-  currentLanguage: string;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, public translate: TranslateService
   ) {
-    this.myForm = this.builderForm();
+    this.buildLocalisationForm();
   }
 
   ngOnInit(): void {
-    console.log("je suis cree")
-    this.subscription = this.route.params.subscribe(params => this.changeLangue(params));
   }
 
-  builderForm(): any {
+  buildLocalisationForm(): any {
     let allInputs = {};
     for (let i = 0; i < this.methods.length; i++) {
       var inputs = this.methods[i].inputs;
@@ -44,7 +41,7 @@ export class FormEntryComponent implements OnInit, OnDestroy {
         allInputs[this.methods[i].inputs[j]] = '';
       }
     }
-    return this.formBuilder.group(allInputs);
+    this.formValues = this.formBuilder.group(allInputs);
   }
 
   changeMethod(event: any) {
@@ -54,19 +51,12 @@ export class FormEntryComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     var args = {};
-    this.formInputs.forEach(element => { args[element] = this.myForm.value[element]; });
-    this.router.navigate([this.currentLanguage + '/home/current'], { queryParams: Object.assign(args, this.formMethod) });
+    this.formInputs.forEach(element => { args[element] = this.formValues.value[element]; });
+    this.router.navigate(['/home/current'], { queryParams: Object.assign(args, this.formMethod) });
 
-  }
-
-  changeLangue(params: any) {
-    console.log(params["lang"])
-    this.translate.use(params["lang"]);
-    this.currentLanguage = params["lang"];
   }
 
   ngOnDestroy() {
-    console.log("je suis détruit")
     this.subscription.unsubscribe();
   }
 

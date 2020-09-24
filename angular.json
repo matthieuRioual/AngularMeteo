@@ -41,7 +41,6 @@
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/jquery/dist/jquery.min.js"
-
             ]
           },
           "configurations": {
@@ -98,12 +97,6 @@
             "production": {
               "browserTarget": "Appmeteo:build:production"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "Appmeteo:build"
           }
         },
         "test": {

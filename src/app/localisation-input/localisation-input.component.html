@@ -2,7 +2,7 @@
     <fieldset class="form-group">
         <div class="row">
             <legend class="col-form-label col-sm-6 pt-0" style='text-decoration: underline;'
-                i18n="localisation method|A phrase to ask the customer to choose his localisation method">Choose your
+                i18n="localisation method|A phrase to ask the customer to choose his localisation method@@CityChoice">Choose your
                 localisation
                 method :</legend>
             <div class="col-sm-6">
@@ -10,7 +10,7 @@
                     <input class="form-check-input" type="radio" name="City" id="{{method.name}}" [value]="method.name"
                         (click)="changeMethod($event)" [checked]="method.name == 'City'">
                     <label [for]="method.name">
-                        {{method.name | translate}}
+                        {{method.name}}
                     </label>
 
                 </div>
@@ -21,7 +21,7 @@
     <div *ngIf='formMethod.method'>
         <div class="form-group">
             <div class='mt-3' *ngFor='let input of formInputs'>
-                <label for="{{input}}"> {{input | translate }}</label>
+                <label for="{{input}}"> {{input}}</label>
                 <input id="{{input}}" type='text' placeholder="Please input a Location" i18n-placeholder
                     class="form-control localisation" formControlName="{{input}}" />
 

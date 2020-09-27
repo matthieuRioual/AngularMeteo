@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subscription } from 'rxjs';
+import { nameValidator } from '../custom_validator/name.validator';
 
 
 @Component({
@@ -19,9 +20,10 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
   private methodSubscription: Subscription;
   submitted: boolean = false;
 
+
   methods = [
-    { id: 1, name: 'City', inputs: ['city'] },
-    { id: 2, name: 'Geographic', inputs: ['lat', 'long'] }
+    { id: 1, name: 'City', inputs: ['city'], validators: [[Validators.required, nameValidator]] },
+    { id: 2, name: 'Geographic', inputs: ['lat', 'long'], validators: [[Validators.required], Validators.required] }
   ];
 
   formInputs = this.methods[0].inputs;
@@ -29,7 +31,7 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, public translate: TranslateService
   ) {
     this.buildRadioForm();
-    this.buildLocalisationForm();
+    this.buildLocalisationForm({ inputs: ['city'], validators: [[Validators.required, nameValidator]] });
   }
 
   ngOnInit(): void {
@@ -44,21 +46,20 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
     })
   }
 
-  buildLocalisationForm(methods: string[] = ["city"]) {
+  buildLocalisationForm(methods) {
     let h = {};
-    console.log(methods)
-    for (const x in methods) {
-      h[methods[x]] = ['', Validators.required]
+    for (const x in methods.inputs) {
+      h[methods.inputs[x]] = ["", methods.validators[x]]
     }
     console.log(h)
     this.formValues = this.formBuilder.group(h);
   }
 
   getInputs(method: string): void {
-    let methodInMethods = this.methods.filter(x => method === x.name)[0].inputs;
+    let methodInMethods = this.methods.filter(x => method === x.name)[0];
     this.buildLocalisationForm(methodInMethods);
 
-    this.formInputs = methodInMethods;
+    this.formInputs = methodInMethods.inputs;
   }
 
   onSubmit() {

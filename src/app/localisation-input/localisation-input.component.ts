@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,50 +14,68 @@ import { Subscription } from 'rxjs';
 export class LocalisationInputComponent implements OnInit, OnDestroy {
 
   formValues: FormGroup;
-  formMethod = { method: 'City' };
-  private subscription: Subscription;
-
+  private valueSubscription: Subscription;
+  formMethods: FormGroup;
+  private methodSubscription: Subscription;
+  submitted: boolean = false;
 
   methods = [
     { id: 1, name: 'City', inputs: ['city'] },
     { id: 2, name: 'Geographic', inputs: ['lat', 'long'] }
   ];
 
-  formInputs = this.methods.filter(x => this.formMethod.method === x.name)[0].inputs;
+  formInputs = this.methods[0].inputs;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, public translate: TranslateService
   ) {
+    this.buildRadioForm();
     this.buildLocalisationForm();
   }
 
   ngOnInit(): void {
+    this.methodSubscription = this.formMethods.valueChanges.subscribe(inputMethod => this.getInputs(inputMethod.method));
   }
 
-  buildLocalisationForm(): any {
-    let allInputs = {};
-    for (let i = 0; i < this.methods.length; i++) {
-      var inputs = this.methods[i].inputs;
-      for (let j = 0; j < inputs.length; j++) {
-        allInputs[this.methods[i].inputs[j]] = '';
-      }
+  get f() { return this.formValues.controls; }
+
+  buildRadioForm() {
+    this.formMethods = this.formBuilder.group({
+      method: 'City',
+    })
+  }
+
+  buildLocalisationForm(methods: string[] = ["city"]) {
+    let h = {};
+    console.log(methods)
+    for (const x in methods) {
+      h[methods[x]] = ['', Validators.required]
     }
-    this.formValues = this.formBuilder.group(allInputs);
+    console.log(h)
+    this.formValues = this.formBuilder.group(h);
   }
 
-  changeMethod(event: any) {
-    this.formMethod.method = event.target.value;
-    this.formInputs = this.methods.filter(x => this.formMethod.method === x.name)[0].inputs;
+  getInputs(method: string): void {
+    let methodInMethods = this.methods.filter(x => method === x.name)[0].inputs;
+    this.buildLocalisationForm(methodInMethods);
+
+    this.formInputs = methodInMethods;
   }
 
   onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.formValues.invalid) {
+      return;
+    }
     var args = {};
     this.formInputs.forEach(element => { args[element] = this.formValues.value[element]; });
-    this.router.navigate(['/home/current'], { queryParams: Object.assign(args, this.formMethod) });
+    this.router.navigate(['/home/current'], { queryParams: Object.assign(args, this.formMethods) });
 
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.methodSubscription.unsubscribe();
   }
 
 }

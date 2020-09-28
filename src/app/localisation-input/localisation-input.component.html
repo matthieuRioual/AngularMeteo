@@ -9,7 +9,7 @@
                 method :</legend>
             <div class="col-sm-6">
                 <div class="form-check" *ngFor="let method of methods">
-                    <input class="form-check-input" type="radio" id="{{method.name}}" [value]="method.name"
+                    <input class="form-check-input" type="radio" id="method.name" [value]="method.name"
                         formControlName="method">
                     <label [for]="method.name">
                         {{method.name}}
@@ -27,9 +27,12 @@
                 <label for="{{input}}"> {{input}}</label>
                 <input id="{{input}}" type='text' placeholder="Please input a Location" i18n-placeholder
                     class="form-control localisation" formControlName="{{input}}" autocomplete="off" />
-                <div *ngIf="input" class="alert alert-danger">
-                    <div *ngIf="formValues[input].errors.required">
+                <div *ngIf="f[input].invalid && (f[input].dirty || f[input].touched)" class="alert alert-danger">
+                    <div *ngIf="f[input].errors.required">
                         {{input}} is required.
+                    </div>
+                    <div *ngIf="f[input].errors.forbiddenName">
+                        Marseille est interdit
                     </div>
 
                 </div>

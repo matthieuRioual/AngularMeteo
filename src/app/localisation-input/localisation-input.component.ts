@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { nameValidator } from '../custom_validator/name.validator';
+import { forbiddenNameValidator } from '../custom_validator/forbiddenName.validator';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
 
 
   methods = [
-    { id: 1, name: 'City', inputs: ['city'], validators: [[Validators.required, nameValidator]] },
+    { id: 1, name: 'City', inputs: ['city'], validators: [[Validators.required, forbiddenNameValidator]] },
     { id: 2, name: 'Geographic', inputs: ['lat', 'long'], validators: [[Validators.required], Validators.required] }
   ];
 
@@ -31,7 +31,7 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, public translate: TranslateService
   ) {
     this.buildRadioForm();
-    this.buildLocalisationForm({ inputs: ['city'], validators: [[Validators.required, nameValidator]] });
+    this.buildLocalisationForm({ inputs: ['city'], validators: [[Validators.required, forbiddenNameValidator]] });
   }
 
   ngOnInit(): void {
@@ -64,12 +64,6 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
     this.formInputs = methodInMethods.inputs;
   }
 
-  get city() { return this.formValues.get('city'); }
-
-  get lat() { return this.formValues.get('lat'); }
-
-  get long() { return this.formValues.get('long'); }
-
   onSubmit() {
     this.submitted = true;
 
@@ -79,7 +73,7 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
     }
     var args = {};
     this.formInputs.forEach(element => { args[element] = this.formValues.value[element]; });
-    this.router.navigate(['/home/current'], { queryParams: Object.assign(args, this.formMethods) });
+    this.router.navigate(['/home/current'], { queryParams: Object.assign(args, this.formMethods.controls.method) });
 
   }
 

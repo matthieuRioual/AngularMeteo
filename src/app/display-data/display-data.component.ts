@@ -1,21 +1,45 @@
-import { Component, Inject, OnInit } from '@angular/core';
-/* import { ActivatedRoute } from '@angular/router';
-import { WeatherServiceService } from '../shared/services/weather-service.service'; */
+import { Component, OnInit, Inject, Directive } from '@angular/core';
 import { DailyMeteo } from '../shared/models/DailyMeteo';
 import { Subscription } from 'rxjs';
-import { DisplayData } from '../display-data/display-data.component';
 import { ActivatedRoute } from '@angular/router';
-import { WeatherServiceService } from '../shared/services/weather-service.service';
+import { WeatherServiceService } from '../shared/services/weather-service.service'
 
-@Component({
-  selector: 'app-forecast-meteo',
-  templateUrl: './forecast-meteo.component.html',
-  styleUrls: ['./forecast-meteo.component.css']
-})
-export class ForecastMeteoComponent extends DisplayData implements OnInit {
+@Directive()
+export abstract class DisplayData implements OnInit {
 
-  constructor(@Inject(ActivatedRoute) route: ActivatedRoute, @Inject(WeatherServiceService) weatherService: WeatherServiceService) {
-    super(weatherService, route)
+  meteoData: DailyMeteo[] = [];
+  queryParamsSubscription: Subscription;
+
+  constructor(protected weatherService: WeatherServiceService, protected route: ActivatedRoute) { };
+
+  ngOnInit() {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+      this.getMeteo(params); // Print the parameter to the console. 
+    });
+  }
+
+  getDate(ts_ms: number): string {
+    var date_ob = new Date(ts_ms);
+
+    // year as 4 digits (YYYY)
+    var year = date_ob.getFullYear();
+
+    // month as 2 digits (MM)
+    var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+    // date as 2 digits (DD)
+    var date = ("0" + date_ob.getDate()).slice(-2);
+
+    // hours as 2 digits (hh)
+    var hours = ("0" + date_ob.getHours()).slice(-2);
+
+    // minutes as 2 digits (mm)
+    var minutes = ("0" + date_ob.getMinutes()).slice(-2);
+
+    // seconds as 2 digits (ss)
+    var seconds = ("0" + date_ob.getSeconds()).slice(-2);
+
+    return (year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
   }
 
   getMeteo(localisation: any) {
@@ -65,4 +89,5 @@ export class ForecastMeteoComponent extends DisplayData implements OnInit {
       });
     };
   }
+
 }

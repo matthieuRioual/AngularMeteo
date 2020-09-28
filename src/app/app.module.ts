@@ -29,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForecastMeteoComponent,
     LocalisationInputComponent,
     DailyWidgetViewComponent,
-    CurrentMeteoComponent
+    CurrentMeteoComponent,
   ],
   imports: [
     BrowserModule,

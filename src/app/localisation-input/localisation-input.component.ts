@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { nameValidator } from '../custom_validator/name.validator';
 
 
@@ -15,7 +15,7 @@ import { nameValidator } from '../custom_validator/name.validator';
 export class LocalisationInputComponent implements OnInit, OnDestroy {
 
   formValues: FormGroup;
-  private valueSubscription: Subscription;
+
   formMethods: FormGroup;
   private methodSubscription: Subscription;
   submitted: boolean = false;
@@ -35,6 +35,7 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    //we subscribe to the radio checkbox so we know when user want to switch to another localisation method
     this.methodSubscription = this.formMethods.valueChanges.subscribe(inputMethod => this.getInputs(inputMethod.method));
   }
 
@@ -42,6 +43,7 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
 
   buildRadioForm() {
     this.formMethods = this.formBuilder.group({
+      //the first radio checked is the city name method
       method: 'City',
     })
   }
@@ -61,6 +63,12 @@ export class LocalisationInputComponent implements OnInit, OnDestroy {
 
     this.formInputs = methodInMethods.inputs;
   }
+
+  get city() { return this.formValues.get('city'); }
+
+  get lat() { return this.formValues.get('lat'); }
+
+  get long() { return this.formValues.get('long'); }
 
   onSubmit() {
     this.submitted = true;

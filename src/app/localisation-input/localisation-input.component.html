@@ -1,46 +1,13 @@
-<form [formGroup]="formMethods">
-    <fieldset class="form-group">
-        <div class="row">
-            <legend class="col-form-label col-sm-6 pt-0" style='text-decoration: underline;'
-                i18n="localisation method|A phrase to ask the customer to choose his localisation method@@CityChoice">
-                Choose
-                your
-                localisation
-                method :</legend>
-            <div class="col-sm-6">
-                <div class="form-check" *ngFor="let method of methods">
-                    <input class="form-check-input" type="radio" id="method.name" [value]="method.name"
-                        formControlName="method">
-                    <label [for]="method.name">
-                        {{method.name}}
-                    </label>
-                </div>
-            </div>
-        </div>
-    </fieldset>
-</form>
+<app-selection-form (selectionChanged)="handleChangedMethod($event)"    ></app-selection-form>
 
-<form [formGroup]="formValues" (ngSubmit)="onSubmit()">
-    <div *ngIf='formInputs'>
-        <div class="form-group">
-            <div class='mt-3' *ngFor='let input of formInputs;let i index'>
-                <label for="{{input}}"> {{input}}</label>
-                <input id="{{input}}" type='text' placeholder="Please input a Location" i18n-placeholder
-                    class="form-control localisation" formControlName="{{input}}" autocomplete="off" />
-                <div *ngIf="f[input].invalid && (f[input].dirty || f[input].touched)" class="alert alert-danger">
-                    <div *ngIf="f[input].errors.required">
-                        {{input}} is required.
-                    </div>
-                    <div *ngIf="f[input].errors.forbiddenName">
-                        Marseille est interdit
-                    </div>
+<div *ngIf="choosenMethod == 'cityName'">
 
-                </div>
+    <app-form-city-name></app-form-city-name>
 
-            </div>
+</div>
 
-        </div>
-        <button type='submit' class="btn btn-primary mb-4" [disabled]="!formValues.valid"
-            i18n="send button|text on the input of send button">Send</button>
-    </div>
-</form>
+<div *ngIf="choosenMethod == 'cityPos'">
+
+    <app-form-city-pos></app-form-city-pos>
+
+</div>

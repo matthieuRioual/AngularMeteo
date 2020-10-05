@@ -1,0 +1,18 @@
+<form #coordonates="ngForm" (ngSubmit)="onClickSubmit(coordonates.value)">
+    <div class='form-group' style="max-width: 30%;">
+        <label for="lat">Latitude of city</label>
+        <input type="text" class="form-control" id="lat" placeholder="Please input a Latitude" name="latitude"
+            autocomplete="off" required>
+        <!-- <div *ngIf="lat.invalid && (lat.dirty || lat.touched)" class="alert alert-danger">
+            <div *ngIf="lat.errors.required">
+                Username is required
+            </div>
+        </div> -->
+    </div>
+    <div class='form-group' style="max-width: 30%;">
+        <label for="long">Longitude of city</label>
+        <input type="text" class="form-control" id="long" placeholder="Please input a Longitude" required
+            name="longitude" autocomplete="off" ngModel>
+    </div>
+    <button type='submit' class="btn btn-primary mb-4">Send</button>
+</form>

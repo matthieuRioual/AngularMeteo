@@ -1,12 +1,12 @@
-import { Component, OnInit, Inject, Directive } from '@angular/core';
+import { Component, OnInit, Inject, Directive, OnDestroy } from '@angular/core';
 import { DailyMeteo } from '../shared/models/DailyMeteo';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherServiceService } from '../shared/services/weather-service.service';
- 
+
 
 @Directive()
-export abstract class DisplayData implements OnInit {
+export abstract class DisplayData implements OnInit, OnDestroy {
 
   meteoData: DailyMeteo[] = [];
   queryParamsSubscription: Subscription;
@@ -16,6 +16,7 @@ export abstract class DisplayData implements OnInit {
   ngOnInit() {
     this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       this.getMeteo(params); // Print the parameter to the console. 
+
     });
   }
 
@@ -43,6 +44,12 @@ export abstract class DisplayData implements OnInit {
     return (year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
   }
 
-  abstract getMeteo(truc:any):void;
+  abstract getMeteo(truc: any): void;
+
+
+  ngOnDestroy() {
+    this.queryParamsSubscription.unsubscribe();
+  }
+
 
 }

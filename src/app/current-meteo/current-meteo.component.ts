@@ -29,8 +29,8 @@ export class CurrentMeteoComponent extends DisplayData implements OnInit {
       humidity?: string;
   }*/
   getMeteo(localisation: any) {
-    if (localisation.city) {
-      this.weatherService.getCurrentWeatherbyCity(localisation.city).subscribe(datas => {
+    if (localisation.name) {
+      this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(datas => {
         this.meteoData[0] = new DailyMeteo();
         this.meteoData[0].city = datas.name;
         console.log(datas.timezone);

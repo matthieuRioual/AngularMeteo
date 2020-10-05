@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,14 +14,9 @@ import { DailyWidgetViewComponent } from './daily-widget-view/daily-widget-view.
 import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { MultiTranslateHttpLoader } from "ngx-translate-multi-http-loader";
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [
-    { prefix: "./assets/translate/", suffix: ".json" },
-  ]);
-}
+import { SelectionFormComponent } from './forms/selection-form/selection-form.component';
+import { FormCityNameComponent } from './forms/form-city-name/form-city-name.component';
+import { FormCityPosComponent } from './forms/form-city-pos/form-city-pos.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +26,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     LocalisationInputComponent,
     DailyWidgetViewComponent,
     CurrentMeteoComponent,
+    SelectionFormComponent,
+    FormCityNameComponent,
+    FormCityPosComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,14 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

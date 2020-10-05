@@ -1,0 +1,24 @@
+<form [formGroup]="formCityName" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="cityName">City Name</label>
+        <input type='text' id="cityName" class="form-control" placeholder="Please input a Location"
+            formControlName="name" autocomplete="off" style="max-width: 30%;" />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="name.errors.forbiddenName">
+                This city cannot be displayed.
+            </div>
+
+
+        </div>
+
+    </div>
+    <button type='submit' class="btn btn-primary mb-4" [disabled]="!formCityName.valid"
+        i18n="send button|text on the input of send button">Send</button>
+</form>

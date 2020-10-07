@@ -28,8 +28,8 @@ export class FormCityPosComponent implements OnInit {
     })
   }
 
-  get lat() { return this.formCityPos.get('lat'); }
-  get long() { return this.formCityPos.get('long'); }
+  get lat() { return this.formCityPos.get('latitude'); }
+  get long() { return this.formCityPos.get('longitude'); }
 
 
   onSubmit() {

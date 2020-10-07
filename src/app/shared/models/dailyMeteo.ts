@@ -1,4 +1,6 @@
 import { oneDayDTO } from './oneDayDTO';
+import { multipleDayDTO } from './multipleDayDTO';
+
 
 export class DailyMeteo {
 
@@ -33,22 +35,25 @@ export class DailyMeteo {
         return meteo;
     }
 
-    public static processBackendMeteos(dto: oneDayDTO): DailyMeteo[] {
-        let forecastmeteo:DailyMeteo[]=[];
-        let meteo=new DailyMeteo();
-        meteo.city = dto.name;
-        meteo.date = DailyMeteo.getDate((dto.dt + dto.timezone - 7200) * 1000)
-        meteo.temp = Math.round((dto.main.temp - 273) * 10) / 10;
-        meteo.temp_feeling = Math.trunc(dto.main.feels_like - 273);
-        meteo.temp_max = Math.trunc(dto.main.temp_max - 273);
-        meteo.temp_min = Math.trunc(dto.main.temp_min - 273);
-        meteo.description = dto.weather[0].description
-        meteo.icon = dto.weather[0].icon
-        meteo.pressure = dto.main.pressure
-        meteo.humidity = dto.main.humidity
-        meteo.wind = Math.round(Number(dto.wind.speed) * 3.6 * 100) / 100;
-        forecastmeteo.push(meteo);
-        return
+    public static processBackendMeteos(dto: multipleDayDTO): DailyMeteo[] {
+        let forecastmeteo: DailyMeteo[] = [];
+        for (let i = 0; i < dto.list.length; i++) {
+            let day = dto.list[i]
+            let meteo = new DailyMeteo();
+            meteo.city = dto.city.name;
+            meteo.date = DailyMeteo.getDate((day.dt + dto.city.timezone - 7200) * 1000)
+            meteo.temp = Math.round((day.main.temp - 273) * 10) / 10;
+            meteo.temp_feeling = Math.trunc(day.main.feels_like - 273);
+            meteo.temp_max = Math.trunc(day.main.temp_max - 273);
+            meteo.temp_min = Math.trunc(day.main.temp_min - 273);
+            meteo.description = day.weather[0].description
+            meteo.icon = day.weather[0].icon
+            meteo.pressure = day.main.pressure
+            meteo.humidity = day.main.humidity
+            meteo.wind = Math.round(Number(day.wind.speed) * 3.6 * 100) / 100;
+            forecastmeteo.push(meteo);
+        }
+        return forecastmeteo;
     }
 
     private static getDate(ts_ms: number): string {

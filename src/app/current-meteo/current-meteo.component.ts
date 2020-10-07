@@ -36,9 +36,9 @@ export class CurrentMeteoComponent extends DisplayData implements OnInit {
     if (localisation.name) {
       this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(data => this.meteoData = data);
     }
-    /* else if (localisation.lat && localisation.long) {
+     else if (localisation.lat && localisation.long) {
       this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(data => this.meteoData = data);
-    } */
+    }
   }
 }
 

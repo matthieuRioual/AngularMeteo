@@ -14,7 +14,9 @@ import { WeatherServiceService } from '../shared/services/weather-service.servic
 })
 export class ForecastMeteoComponent extends DisplayData implements OnInit {
 
-  constructor(@Inject(ActivatedRoute) route: ActivatedRoute, @Inject(WeatherServiceService) weatherService: WeatherServiceService) {
+  meteoData: DailyMeteo[];
+
+  constructor(route: ActivatedRoute, weatherService: WeatherServiceService) {
     super(weatherService, route)
   }
 

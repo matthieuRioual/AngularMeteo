@@ -8,7 +8,7 @@ import { WeatherServiceService } from '../shared/services/weather-service.servic
 @Directive()
 export abstract class DisplayData implements OnInit, OnDestroy {
 
-  meteoData: DailyMeteo[] = [];
+  abstract meteoData;
   queryParamsSubscription: Subscription;
 
   constructor(protected weatherService: WeatherServiceService, protected route: ActivatedRoute) { };

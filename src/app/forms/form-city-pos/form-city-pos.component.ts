@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -9,13 +11,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormCityPosComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  formCityPos: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.buildFormCityPos()
+  }
 
   ngOnInit(): void {
   }
 
-  onClickSubmit(coordonates) {
-    this.router.navigate(['/home/current'], { queryParams: { lat: coordonates.latitude, long: coordonates.longitude } });
+  buildFormCityPos(): void {
+    this.formCityPos = this.formBuilder.group({
+      //the first radio checked is the city name method
+      latitude: new FormControl('', [Validators.required]),
+      longitude: new FormControl('', [Validators.required])
+    })
   }
+
+  get lat() { return this.formCityPos.get('lat'); }
+  get long() { return this.formCityPos.get('long'); }
+
+
+  onSubmit() {
+    // stop here if form is invalid
+    if (this.formCityPos.invalid) {
+      return;
+    }
+    this.router.navigate(['/home/current'], { queryParams: { lat: this.lat.value, long: this.long.value } });
+  }
+
 
 }

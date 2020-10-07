@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WeatherServiceService } from '../shared/services/weather-service.service';
 import { DailyMeteo } from '../shared/models/DailyMeteo';
 import { DisplayData } from '../display-data/display-data.component';
+import { paramsDTO } from '../shared/models/paramsDTO';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { DisplayData } from '../display-data/display-data.component';
 })
 export class CurrentMeteoComponent extends DisplayData implements OnInit {
 
-  constructor(route: ActivatedRoute, @Inject(WeatherServiceService) weatherService: WeatherServiceService) {
+  meteoData: DailyMeteo;
+
+  constructor(route: ActivatedRoute, weatherService: WeatherServiceService) {
     super(weatherService, route)
   }
 
@@ -28,14 +31,14 @@ export class CurrentMeteoComponent extends DisplayData implements OnInit {
       pressure?: string;
       humidity?: string;
   }*/
-  getMeteo(localisation: any): void {
-    console.log(localisation);
+  getMeteo(localisation: paramsDTO): void {
+    console.log(localisation)
     if (localisation.name) {
-      this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(data => this.meteoData[0] = data);
+      this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(data => this.meteoData = data);
     }
-    else if (localisation.lat && localisation.long) {
-      this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(data => this.meteoData[0] = data);
-    }
+    /* else if (localisation.lat && localisation.long) {
+      this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(data => this.meteoData = data);
+    } */
   }
 }
 

@@ -15,7 +15,6 @@ export class FormCityPosComponent implements OnInit {
   }
 
   onClickSubmit(coordonates) {
-    console.log(coordonates);
     this.router.navigate(['/home/current'], { queryParams: { lat: coordonates.latitude, long: coordonates.longitude } });
   }
 

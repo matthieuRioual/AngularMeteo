@@ -13,7 +13,7 @@ import { DisplayData } from '../display-data/display-data.component';
 })
 export class CurrentMeteoComponent extends DisplayData implements OnInit {
 
-  constructor(@Inject(ActivatedRoute) route: ActivatedRoute, @Inject(WeatherServiceService) weatherService: WeatherServiceService) {
+  constructor(route: ActivatedRoute, @Inject(WeatherServiceService) weatherService: WeatherServiceService) {
     super(weatherService, route)
   }
 
@@ -28,42 +28,21 @@ export class CurrentMeteoComponent extends DisplayData implements OnInit {
       pressure?: string;
       humidity?: string;
   }*/
-  getMeteo(localisation: any) {
+  getMeteo(localisation: any): void {
+    console.log(localisation);
     if (localisation.name) {
-      this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(datas => {
-        this.meteoData[0] = new DailyMeteo();
-        this.meteoData[0].city = datas.name;
-        console.log(datas.timezone);
-
-        this.meteoData[0].date = this.getDate((datas.dt + datas.timezone - 7200) * 1000);
-        this.meteoData[0].temp = Math.round((datas.main.temp - 273) * 10) / 10;
-        this.meteoData[0].temp_feeling = Math.trunc(datas.main.feels_like - 273);
-        this.meteoData[0].temp_min = Math.trunc(datas.main.temp_min - 273);
-        this.meteoData[0].temp_max = Math.trunc(datas.main.temp_max - 273);
-        this.meteoData[0].description = datas.weather[0].description;
-        this.meteoData[0].icon = datas.weather[0].icon;
-        this.meteoData[0].pressure = datas.main.pressure;
-        this.meteoData[0].humidity = datas.main.humidity;
-        this.meteoData[0].wind = Math.round(Number(datas.wind.speed) * 3.6 * 100) / 100;
-      });
+      this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(data => this.meteoData[0] = data);
     }
     else if (localisation.lat && localisation.long) {
-      this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(datas => {
-        this.meteoData[0] = new DailyMeteo();
-        this.meteoData[0].city = datas.name;
-        console.log(datas.timezone);
-        this.meteoData[0].date = this.getDate((datas.dt + datas.timezone - 7200) * 1000);
-        this.meteoData[0].temp = Math.round((datas.main.temp - 273) * 10) / 10;
-        this.meteoData[0].temp_feeling = Math.trunc(datas.main.feels_like - 273);
-        this.meteoData[0].temp_min = Math.trunc(datas.main.temp_min - 273);
-        this.meteoData[0].temp_max = Math.trunc(datas.main.temp_max - 273);
-        this.meteoData[0].description = datas.weather[0].description;
-        this.meteoData[0].icon = datas.weather[0].icon;
-        this.meteoData[0].pressure = datas.main.pressure;
-        this.meteoData[0].humidity = datas.main.humidity;
-        this.meteoData[0].wind = Math.round(Number(datas.wind.speed) * 3.6 * 100) / 100;
-      });
+      this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(data => this.meteoData[0] = data);
     }
   }
-
 }
+
+
+
+
+
+
+
+

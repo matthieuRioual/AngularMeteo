@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forbiddenNameValidator } from '../../custom_validator/forbiddenName.validator';
+import { forbiddenName } from '../../custom_validator/forbiddenName.validator';
 
 @Component({
   selector: 'app-form-city-name',
@@ -22,7 +22,7 @@ export class FormCityNameComponent implements OnInit {
   buildFormCityName(): void {
     this.formCityName = this.formBuilder.group({
       //the first radio checked is the city name method
-      name: new FormControl('', [Validators.required, Validators.minLength(4), forbiddenNameValidator('Toulon')])
+      name: new FormControl('', [Validators.required, forbiddenName('Toulon')])
     })
   }
 
@@ -33,7 +33,6 @@ export class FormCityNameComponent implements OnInit {
     if (this.formCityName.invalid) {
       return;
     }
-    console.log({name:this.name.value})
     this.router.navigate(['/home/current'], { queryParams: { name: this.name.value } });
   }
 

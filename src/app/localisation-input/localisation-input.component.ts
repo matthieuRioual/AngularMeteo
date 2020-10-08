@@ -8,17 +8,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class LocalisationInputComponent implements OnInit {
 
-  choosenMethod: string;
-
+  /* choosenMethod: string;
+ */
   constructor() {
-    this.choosenMethod = 'cityName'
+    /* this.choosenMethod = 'cityName' */
   }
 
   ngOnInit(): void {
   }
 
-  handleChangedMethod(valueEmitted) {
+ /*  handleChangedMethod(valueEmitted) {
     this.choosenMethod = valueEmitted;
-  }
+  } */
 
 }

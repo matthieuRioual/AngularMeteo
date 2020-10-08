@@ -1,6 +1,7 @@
-export interface paramsDTO {
-    name: string,
-    lat: string,
-    long: string
+export class paramsDTO {
+    constructor() { }
+    name?: string
+    lat?: string
+    long?: string
 }
 

@@ -10,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  triggered: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.triggered = false;
   }
 
-
+  issubmited() {
+    this.triggered = true;
+  }
 }

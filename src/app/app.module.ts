@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionFormComponent } from './forms/selection-form/selection-form.component';
 import { FormCityNameComponent } from './forms/form-city-name/form-city-name.component';
 import { FormCityPosComponent } from './forms/form-city-pos/form-city-pos.component';
+import { SingleFormComponent } from './forms/single-form/single-form.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FormCityPosComponent } from './forms/form-city-pos/form-city-pos.compon
     SelectionFormComponent,
     FormCityNameComponent,
     FormCityPosComponent,
+    SingleFormComponent,
   ],
   imports: [
     BrowserModule,

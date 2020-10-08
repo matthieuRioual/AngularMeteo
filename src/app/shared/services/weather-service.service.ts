@@ -31,7 +31,6 @@ export class WeatherServiceService {
     return this.http.get<multipleDayDTO>(`${apiURL}/forecast?q=${loc}&appid=${apiKey}`)
       .pipe(
         map(meteoResponse => { return (DailyMeteo.processBackendMeteos(meteoResponse)) }),
-        /* map(meteoResponse => { return DailyMeteo.processBackendMeteos(meteoResponse) }), */
         tap(_ => { this.logger.info('City name : ' + loc + 'forecast weather fetched') }),
         catchError(this.handleError<DailyMeteo[]>('City name : ' + loc + 'forecast weather fetched'))
       );

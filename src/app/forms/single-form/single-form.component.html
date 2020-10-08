@@ -1,0 +1,19 @@
+<form [formGroup]="singleFormInput " (ngSubmit)="onSubmit()" style='text-align: center;'>
+    <div class="form-group">
+        <div class='mx-auto' style="max-width: 70%;">
+            <input type='text' id="singleInput" class="form-control"
+                placeholder="Please input a Name or latitude;longitude of the city" formControlName="input"
+                style='text-align:center' autocomplete="off" autofocus />
+
+            <div *ngIf="input.invalid && (input.dirty || input.touched)" class="alert alert-danger">
+
+                <div *ngIf="input.errors.required">
+                    An input is required : you can eather use the name of city or lat;long
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button type='submit' class="btn btn-primary mb-4" [disabled]="!singleFormInput.valid"
+        i18n="send button|text on the input of send button">Display</button>
+</form>

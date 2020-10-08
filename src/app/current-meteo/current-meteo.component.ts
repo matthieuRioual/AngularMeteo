@@ -17,20 +17,8 @@ export class CurrentMeteoComponent extends DisplayData implements OnInit {
   meteoData: DailyMeteo;
 
   constructor(route: ActivatedRoute, weatherService: WeatherServiceService) {
-    super(weatherService, route)
-  }
+    super(weatherService, route)  }
 
-  /*city: string;
-      date: Date;
-      temp: number;
-      temp_feeling?: number;
-      temp_min?: number;
-      temp_max?: number;
-      weather_description: string;
-      icon: string;
-      pressure?: string;
-      humidity?: string;
-  }*/
   getMeteo(localisation: paramsDTO): void {
     console.log(localisation)
     if (localisation.name) {

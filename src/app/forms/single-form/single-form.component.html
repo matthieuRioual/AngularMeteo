@@ -10,6 +10,10 @@
                 <div *ngIf="input.errors.required">
                     An input is required : you can eather use the name of city or lat;long
                 </div>
+                <div *ngIf="input.errors.forbiddenName">
+                    This city cannot be displayed.
+                </div>
+
             </div>
         </div>
 

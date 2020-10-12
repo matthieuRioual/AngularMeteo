@@ -1,9 +1,8 @@
-import { Component, OnInit, EventEmitter,Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { paramsDTO } from '../../shared/models/paramsDTO';
-
-
+import { forbiddenName } from '../../custom_validator/forbiddenName.validator';
 
 @Component({
   selector: 'app-single-form',
@@ -26,7 +25,7 @@ export class SingleFormComponent implements OnInit {
   buildFormCityPos(): void {
     this.singleFormInput = this.formBuilder.group({
       //the first radio checked is the city name method
-      input: new FormControl('', [Validators.required]),
+      input: new FormControl('', [Validators.required, forbiddenName('Toulon')]),
     })
   }
 

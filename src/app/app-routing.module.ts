@@ -11,9 +11,10 @@ const routes: Routes = [
   {
     path: 'home', component: HomePageComponent,
     children: [
-      { path: 'current', component: CurrentMeteoComponent, canActivate: [LoginGuard] },
-      { path: 'forecast', component: ForecastMeteoComponent, canActivate: [LoginGuard] },
+      { path: 'current', component: CurrentMeteoComponent },
+      { path: 'forecast', component: ForecastMeteoComponent },
     ],
+    canActivate: [LoginGuard]
   },
   { path: 'login', component: LoginFormComponent }
 ];

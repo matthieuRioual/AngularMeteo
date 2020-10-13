@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -12,11 +10,16 @@ export class HomePageComponent implements OnInit {
 
   triggered: boolean;
 
-  constructor() { }
+  constructor(protected route: ActivatedRoute) { }
 
-  
+
   ngOnInit(): void {
-    this.triggered = false;
+    this.route.queryParams.subscribe(params => {
+      if (params)
+        this.triggered = true;
+      else
+        this.triggered = false;
+    });
   }
 
   onSubmited() {

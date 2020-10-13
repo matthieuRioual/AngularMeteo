@@ -11,9 +11,11 @@ import { AuthService } from '../../shared/services/auth.service';
 export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
+  loginError: boolean;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private auth: AuthService) {
     this.buildLoginForm()
+    this.loginError = false;
   }
 
   ngOnInit(): void {
@@ -22,19 +24,21 @@ export class LoginFormComponent implements OnInit {
   buildLoginForm(): void {
     this.loginForm = this.formBuilder.group({
       //the first radio checked is the city name method
-      pseudo: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     })
   }
 
-  get pseudo() { return this.loginForm.get('pseudo'); }
+  get email() { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password') }
 
   onSubmit(): void {
-    if (this.pseudo.value === 'lapatate' && this.password.value === 'password') {
+    if (this.email.value === 'lapatate@puremaison.fr' && this.password.value === 'password') {
       this.auth.isLoggedIn = true;
       this.router.navigate(['/home'])
     }
+    else
+      this.loginError = true;
   }
 
 }

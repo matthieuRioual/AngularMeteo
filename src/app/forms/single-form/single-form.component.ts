@@ -27,28 +27,28 @@ export class SingleFormComponent implements OnInit {
   buildFormCityPos(): void {
     this.singleFormInput = this.formBuilder.group({
       //the first radio checked is the city name method
-      input: new FormControl('', [Validators.required, forbiddenName('Toulon'), forbiddenTypo(/[^\[a-z\]|\s|_|\[0-9\]]/)]),
+      information: new FormControl('', [Validators.required, forbiddenName('Toulon'), forbiddenTypo(/[^\[a-z\]|\s|_|\[0-9\]]/)]),
     })
   }
 
-  get input() { return this.singleFormInput.get('input'); }
+  get information() { return this.singleFormInput.get('information'); }
 
-  ParseData(inputrequest: string): paramsDTO {
+  ParseData(informationrequest: string): paramsDTO {
     const params = new paramsDTO()
     const regex1 = /^([0-9]+|[0-9]*\.[0-9]*);([0-9]+|[0-9]*\.[0-9]*)$/;
     const regex2 = /(\D+)/;
-    if (inputrequest.match(regex1)) {
-      params.lat = regex1.exec(inputrequest)[1];
-      params.long = regex1.exec(inputrequest)[2]
+    if (informationrequest.match(regex1)) {
+      params.lat = regex1.exec(informationrequest)[1];
+      params.long = regex1.exec(informationrequest)[2]
     }
-    else if (inputrequest.match(regex2)) {
-      params.name = regex2.exec(inputrequest)[0];
+    else if (informationrequest.match(regex2)) {
+      params.name = regex2.exec(informationrequest)[0];
     }
     return params;
   }
 
   onSubmit(): void {
-    const params = this.ParseData(this.input.value);
+    const params = this.ParseData(this.information.value);
     // stop here if form is invalid
     if (this.singleFormInput.invalid) {
       return;

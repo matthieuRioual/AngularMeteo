@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject, Directive, OnDestroy } from '@angular/core';
-import { DailyMeteo } from '../shared/models/DailyMeteo';
+import { OnInit, Directive, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherServiceService } from '../shared/services/weather-service.service';
@@ -8,7 +7,6 @@ import { WeatherServiceService } from '../shared/services/weather-service.servic
 @Directive()
 export abstract class DisplayData implements OnInit, OnDestroy {
 
-  
   abstract meteoData;
   queryParamsSubscription: Subscription;
 

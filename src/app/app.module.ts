@@ -12,6 +12,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DailyWidgetViewComponent } from './daily-widget-view/daily-widget-view.component';
 import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 import { SingleFormComponent } from './forms/single-form/single-form.component';
 
@@ -30,7 +34,9 @@ import { SingleFormComponent } from './forms/single-form/single-form.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

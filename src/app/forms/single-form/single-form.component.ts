@@ -31,7 +31,7 @@ export class SingleFormComponent implements OnInit {
 
   get input() { return this.singleFormInput.get('input'); }
 
-  ParseData(inputrequest: string): paramsDTO {
+  parseData(inputrequest: string): paramsDTO {
     let params = new paramsDTO()
     const regex1 = /^([0-9]+|[0-9]*\.[0-9]*);([0-9]+|[0-9]*\.[0-9]*)$/;
     const regex2 = /(\D+)/;
@@ -45,9 +45,8 @@ export class SingleFormComponent implements OnInit {
     return params;
   }
 
-
   onSubmit(): void {
-    let params = this.ParseData(this.input.value);
+    let params = this.parseData(this.input.value);
     // stop here if form is invalid
     if (this.singleFormInput.invalid) {
       return;

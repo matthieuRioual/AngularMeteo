@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { SingleFormComponent } from './forms/single-form/single-form.component';
+import { LoginFormComponent } from './forms/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SingleFormComponent } from './forms/single-form/single-form.component';
     DailyWidgetViewComponent,
     CurrentMeteoComponent,
     SingleFormComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

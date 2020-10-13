@@ -1,0 +1,16 @@
+<form [formGroup]="loginForm " (ngSubmit)="onSubmit()">
+    <h5 class="card-title text-center px-3 py-2" style="display:inline-block;border: 2px solid;">You need to be
+        registered if you want to access the meteo datas</h5>
+    <div class="form-group pl-5" style="max-width: 60%;">
+        <div>
+            <label for="loginPseudo">Pseudo</label>
+            <input type='text' id="loginPseudo" class="form-control" formControlName="pseudo" autocomplete="off" />
+            <label for="loginPassword">Password</label>
+            <input type='password' id="logingPassword" class="form-control" formControlName="password"
+                autocomplete="off" />
+        </div>
+
+    </div>
+    <button type='submit' class="btn btn-primary mb-4" i18n="send button|text on the input of send button">Sign
+        In</button>
+</form>

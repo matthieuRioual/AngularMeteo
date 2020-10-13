@@ -32,3 +32,8 @@
         </div>
     </div>
 </div>
+<div *ngIf="!meteoData?.city">
+    <p>
+        The localisation cannot be found by our service. Please enter a valid city
+    </p>
+</div>

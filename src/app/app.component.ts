@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
 
   changelanguage(event: any) {
-    let params = this.route.url.split("/");
+    const params = this.route.url.split("/");
     console.log(event.currentTarget.value)
     params[1] = event.currentTarget.value;
     let urlTree = this.route.parseUrl(params.join("/"));

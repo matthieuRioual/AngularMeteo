@@ -23,7 +23,7 @@ export class WeatherServiceService {
       pipe(
         map(meteoResponse => { return (DailyMeteo.processBackendMeteo(meteoResponse)) }),
         tap(_ => { this.logger.info('City name : ' + loc + 'current weather fetched') }),
-        catchError(this.handleError<DailyMeteo>('City name : ' + loc + 'current weather fetched'))
+        catchError(this.handleError<DailyMeteo>('City name : ' + loc + 'current weather fetched', null))
       );
   }
 
@@ -32,7 +32,7 @@ export class WeatherServiceService {
       .pipe(
         map(meteoResponse => { return (DailyMeteo.processBackendMeteos(meteoResponse)) }),
         tap(_ => { this.logger.info('City name : ' + loc + 'forecast weather fetched') }),
-        catchError(this.handleError<DailyMeteo[]>('City name : ' + loc + 'forecast weather fetched'))
+        catchError(this.handleError<DailyMeteo[]>('City name : ' + loc + 'forecast weather fetched', [null]))
       );
   };
 
@@ -41,7 +41,7 @@ export class WeatherServiceService {
       pipe(
         map(meteoResponse => { return (DailyMeteo.processBackendMeteo(meteoResponse)) }),
         tap(_ => { this.logger.info('Loc pos : lat -> ' + lat + ', long -> ' + long + 'current weather displayed') }),
-        catchError(this.handleError<DailyMeteo>('Loc pos : lat -> ' + lat + ', long -> ' + long + 'current weather displayed'))
+        catchError(this.handleError<DailyMeteo>('Loc pos : lat -> ' + lat + ', long -> ' + long + 'current weather displayed', null))
       );
   }
 
@@ -50,7 +50,7 @@ export class WeatherServiceService {
       pipe(
         map(meteoResponse => { return (DailyMeteo.processBackendMeteos(meteoResponse)) }),
         tap(_ => { this.logger.info('Loc pos : lat -> ' + lat + ', long -> ' + long + 'forecast weather displayed') }),
-        catchError(this.handleError<DailyMeteo[]>('Loc pos : lat -> ' + lat + ', long -> ' + long + 'forecast weather displayed'))
+        catchError(this.handleError<DailyMeteo[]>('Loc pos : lat -> ' + lat + ', long -> ' + long + 'forecast weather displayed', [null]))
       );
   }
 

@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit {
     this.triggered = false;
   }
 
-  issubmited() {
+  onSubmited() {
     this.triggered = true;
   }
 }

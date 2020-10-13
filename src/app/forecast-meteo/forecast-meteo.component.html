@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="meteoData[0]?.city">
     <ul class="overflow_scroll" style='height: 500px;'>
         <li *ngFor="let i of meteoData">
             <div>
@@ -9,4 +9,9 @@
         </li>
     </ul>
 
+</div>
+<div *ngIf="!meteoData[0]?.city">
+    <p>
+        The localisation cannot be found by our service. Please enter a valid city
+    </p>
 </div>

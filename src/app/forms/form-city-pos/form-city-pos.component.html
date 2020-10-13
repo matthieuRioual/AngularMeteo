@@ -1,0 +1,25 @@
+<form [formGroup]="formCityPos" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="cityLat">Latitude of City</label>
+        <input type='text' id="latitude" class="form-control" placeholder="Please input a Location"
+            formControlName="latitude" autocomplete="off" style="max-width: 30%;" />
+        <div *ngIf="lat.invalid && (lat.dirty || lat.touched)" class="alert alert-danger">
+
+            <div *ngIf="lat.errors.required">
+                Latitude is required.
+            </div>
+        </div>
+        <label for="cityLong">Longitude of City</label>
+        <input type='text' id="longitude" class="form-control" placeholder="Please input a Location"
+            formControlName="longitude" autocomplete="off" style="max-width: 30%;" />
+        <div *ngIf="long.invalid && (long.dirty || long.touched)" class="alert alert-danger">
+            <div *ngIf="long.errors.required">
+                Longitude is required.
+            </div>
+        </div>
+
+
+    </div>
+    <button type='submit' class="btn btn-primary mb-4" [disabled]="!formCityPos.valid"
+        i18n="send button|text on the input of send button">Send</button>
+</form>

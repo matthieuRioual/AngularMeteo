@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -8,21 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-  triggered: boolean;
-
   constructor(protected route: ActivatedRoute) { }
 
-
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      if (params)
-        this.triggered = true;
-      else
-        this.triggered = false;
-    });
   }
 
-  onSubmited() {
-    this.triggered = true;
+  get cityQueryParam(): string {
+    return this.route.snapshot.queryParamMap.get('name');
   }
+  get longQueryParam(): string {
+    return this.route.snapshot.queryParamMap.get('lon');
+  }
+
+
 }

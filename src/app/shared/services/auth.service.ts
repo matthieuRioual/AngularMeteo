@@ -5,13 +5,22 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  public isLoggedIn: boolean = false;
+  isLoggedIn: boolean;
 
   constructor() {
     this.isLoggedIn = false;
   }
 
   isLoggedn(): boolean {
-    return false;
+    return this.isLoggedIn;
   }
+
+  setLogedIn(logedIn: boolean) {
+    this.isLoggedIn = logedIn;
+  }
+
+  validConnexion(email: string, password: string): boolean {
+    return (email === 'patate@maison.fr' && password === 'password')
+  }
+
 }

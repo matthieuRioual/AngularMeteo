@@ -14,11 +14,13 @@ import { CurrentMeteoComponent } from './current-meteo/current-meteo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 
 import { SingleFormComponent } from './forms/single-form/single-form.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
+import { InputFocusDirective } from './shared/directives/input-focus.directive';
+import { LoadingButtonDirective } from './shared/directives/loading-button.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { LoginFormComponent } from './forms/login-form/login-form.component';
     CurrentMeteoComponent,
     SingleFormComponent,
     LoginFormComponent,
+    InputFocusDirective,
+    LoadingButtonDirective,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,11 @@ import { LoginFormComponent } from './forms/login-form/login-form.component';
     NgbModule,
     FormsModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LocalStorageModule.forRoot({
+      prefix: '',
+      storageType: 'localStorage'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

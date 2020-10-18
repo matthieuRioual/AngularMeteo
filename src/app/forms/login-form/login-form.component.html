@@ -3,15 +3,17 @@
         registered if you want to access the meteo datas</h5>
     <div class="form-group pl-5" style="max-width: 60%;">
         <div>
-            <label for="email">Pseudo</label>
-            <input [class.is-invalid] = "loginForm.get('email').invalid" type='text' id="loginPseudo" class="form-control" formControlName="email" autocomplete="off" />
+            <label for="email">Email</label>
+            <input [class.is-invalid]="loginForm.get('email').invalid" type='text' id="loginEmail" class="form-control"
+                formControlName="email" autocomplete="off" />
             <label for="loginPassword">Password</label>
             <input type='password' id="logingPassword" class="form-control" formControlName="password"
                 autocomplete="off" />
         </div>
 
     </div>
-    <button type='submit' class="btn btn-primary mb-4" i18n="send button|text on the input of send button">Sign
+    <button type='submit' class="btn btn-primary mb-4" [disabled]="!loginForm.valid"
+        i18n="send button|text on the input of send button">Sign
         In</button>
     <div *ngIf='loginError' style='color: red;'>
         Le nom d’utilisateur entré n’appartient à aucun compte. Veuillez le vérifier et réessayer.

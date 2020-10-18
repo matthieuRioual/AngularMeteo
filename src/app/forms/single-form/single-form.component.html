@@ -1,7 +1,7 @@
 <form [formGroup]="singleFormInput " (ngSubmit)="onSubmit()" style='text-align: center;'>
     <div class="form-group">
         <div class='mx-auto' style="max-width: 70%;">
-            <input type='text' id="singleInput" class="form-control"
+            <input appInputFocus type='text' id="singleInput" class="form-control"
                 placeholder="Please input a Name or latitude;longitude of the city" formControlName="information"
                 style='text-align:center' autocomplete="off" autofocus />
 
@@ -18,6 +18,6 @@
         </div>
 
     </div>
-    <button type='submit' class="btn btn-primary mb-4" [disabled]="!singleFormInput.valid"
-        i18n="send button|text on the input of send button">Display</button>
+    <button appLoadingButton loader="/shared/images/spinner.gif" type='submit' class="btn btn-primary mb-4"
+        [disabled]="!singleFormInput.valid" i18n="send button|text on the input of send button">Display</button>
 </form>

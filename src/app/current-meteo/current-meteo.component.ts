@@ -23,15 +23,11 @@ export class CurrentMeteoComponent extends DisplayData implements OnInit {
   }
 
   getMeteo(localisation: paramsDTO): void {
-    this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 1000);
+    
     if (localisation.name) {
-
       this.weatherService.getCurrentWeatherbyCity(localisation.name).subscribe(data => this.meteoData = data);
     }
+    
     else if (localisation.lat && localisation.long) {
       this.weatherService.getCurrentWeatherbyLoc(localisation.lat, localisation.long).subscribe(data => this.meteoData = data);
     }

@@ -1,5 +1,5 @@
-<app-single-form (submited)="onSubmited()"></app-single-form>
-<div *ngIf='triggered'>
+<app-single-form></app-single-form>
+<div *ngIf='cityQueryParam || longQueryParam'>
     <div class='flex-container'>
         <div>
             <a [routerLink]="['current']" queryParamsHandling='preserve' class="btn btn-success"

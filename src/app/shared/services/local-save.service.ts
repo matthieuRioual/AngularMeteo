@@ -17,4 +17,8 @@ export class LocalSaveService {
     return this.storage.get(key);
   }
 
+  clear(){
+    this.storage.clearAll();
+  }
+
 }

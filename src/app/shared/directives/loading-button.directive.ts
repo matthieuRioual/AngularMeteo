@@ -7,21 +7,20 @@ export class LoadingButtonDirective implements OnInit {
 
   originalInnerText: string;
 
-  constructor(@Attribute('loader') public loader: string,private el: ElementRef,
+  constructor(@Attribute('loader') public loader: string, private el: ElementRef,
     private renderer: Renderer2) {
   }
 
   ngOnInit() {
     // Set the button to maintain the same dimensions, even once we put the spinner inside.
-    this.el.nativeElement.style.width = `${(this.el.nativeElement as HTMLElement).offsetWidth}px`;
     this.el.nativeElement.style.height = `${(this.el.nativeElement as HTMLElement).offsetHeight}px`;
-    this.el.nativeElement.classList.add('flex-row');
+    this.el.nativeElement.style.width = `${(this.el.nativeElement as HTMLElement).offsetWidth}px`;
   }
 
   @HostListener('click') onMouseClick() {
-    (<HTMLButtonElement>this.el.nativeElement).disabled = true;
     let spinner = this.renderer.createElement('img');
-    this.renderer.setAttribute(spinner,'src',this.loader);
+    spinner.src = this.loader;
+    this.renderer.setStyle(spinner, 'height', '100%');
     this.originalInnerText = this.el.nativeElement.textContent;
     this.el.nativeElement.removeChild(this.el.nativeElement.firstChild);
     this.el.nativeElement.appendChild(spinner);

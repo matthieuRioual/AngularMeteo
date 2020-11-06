@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/services/auth.service';
+import { LocalSaveService } from './shared/services/local-save.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent implements OnInit {
   title = 'Appmeteo';
 
-  constructor(private route: Router, private auth: AuthService) { }
+  constructor(private route: Router, private auth: AuthService,private storage: LocalSaveService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
 
   onDisconnect() {
     this.auth.setLogedIn(false);
+    this.storage.clear();
     this.route.navigate(['/login']);
 
   }

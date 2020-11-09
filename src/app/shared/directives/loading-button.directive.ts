@@ -1,4 +1,4 @@
-import { Attribute, Directive, Renderer2, ElementRef, OnChanges, OnInit, HostListener } from '@angular/core';
+import { Attribute, Directive, Renderer2, ElementRef, OnChanges, OnInit, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[appLoadingButton]'
@@ -6,8 +6,9 @@ import { Attribute, Directive, Renderer2, ElementRef, OnChanges, OnInit, HostLis
 export class LoadingButtonDirective implements OnInit {
 
   originalInnerText: string;
+  @Input() isLoading: boolean;
 
-  constructor(@Attribute('loader') public loader: string, private el: ElementRef,
+  constructor(private el: ElementRef,
     private renderer: Renderer2) {
   }
 
@@ -18,17 +19,7 @@ export class LoadingButtonDirective implements OnInit {
   }
 
   @HostListener('click') onMouseClick() {
-    let spinner = this.renderer.createElement('img');
-    spinner.src = this.loader;
-    this.renderer.setStyle(spinner, 'height', '100%');
-    this.originalInnerText = this.el.nativeElement.textContent;
-    this.el.nativeElement.removeChild(this.el.nativeElement.firstChild);
-    this.el.nativeElement.appendChild(spinner);
-    setTimeout(() => {
-      this.el.nativeElement.removeChild(this.el.nativeElement.firstChild);
-      this.el.nativeElement.innerText = this.originalInnerText;
-      (<HTMLButtonElement>this.el.nativeElement).disabled = false;
-    }, 3000);
+
   }
 
 }
